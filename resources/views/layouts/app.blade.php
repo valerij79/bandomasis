@@ -51,8 +51,8 @@
                                 Admin panel
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a style="color: darkblue" class="dropdown-item" href="{{ route('admin.stories.index') }}">
-                                    Stories list
+                                <a style="color: darkblue" class="dropdown-item" href="{{ route('admin.management.index') }}">
+                                    Hotels and cities list
                                 </a>
                             </div>
                         </li>

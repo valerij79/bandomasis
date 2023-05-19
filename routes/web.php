@@ -20,17 +20,20 @@ use App\Http\Controllers\UserController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
-// Auth::routes();
+Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 // Administratoriaus maršrutai
 Route::prefix('admin')->middleware('admin')->group(function () {
+
+    Route::get('/admin/management', 'Admin\AdminController@index')->name('admin.management.index');
+
     // Šalių valdymas
     Route::get('/countries', [AdminController::class, 'viewCountries'])->name('admin.countries');
     Route::post('/countries', [AdminController::class, 'addCountry'])->name('admin.countries.add');
@@ -45,7 +48,7 @@ Route::prefix('admin')->middleware('admin')->group(function () {
 });
 
 // Bendri maršrutai
-Route::get('/', [HomeController::class, 'index'])->name('home');
+// Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Šalių maršrutai
 Route::get('/countries', [CountryController::class, 'index'])->name('countries');
@@ -68,6 +71,10 @@ Route::post('/trips/{id}/select-hotel', [TripController::class, 'selectHotel'])-
 // Vartotojo maršrutai
 Route::middleware('auth')->group(function () {
     Route::get('/user/trips', [UserController::class, 'trips'])->name('user.trips');
+    Route::get('/hotels/trips', 'HotelController@trips')->name('hotels.trips');
+    Route::get('/hotels', 'HotelController@index')->name('hotels.index');
+
+
     // Kitų vartotojo maršrutų aprašymas...
 });
 
